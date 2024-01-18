@@ -2,7 +2,6 @@
   "name": "gradient-able-react-hook-reactstrap-js",
   "version": "18.0.1",
   "private": true,
-  "homepage": "https://codedthemes.com/demos/admin-templates/gradient-able/react/default/",
   "dependencies": {
     "@auth0/auth0-spa-js": "^1.22.4",
     "@ckeditor/ckeditor5-build-decoupled-document": "^41.0.0",

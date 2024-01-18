@@ -11,7 +11,7 @@ import { BASENAME } from './config/constant';
 const App = () => {
   return (
     <React.Fragment>
-      <Router basename={BASENAME}>
+      <Router>
         <FirebaseProvider>{renderRoutes(routes)}</FirebaseProvider>
       </Router>
     </React.Fragment>
