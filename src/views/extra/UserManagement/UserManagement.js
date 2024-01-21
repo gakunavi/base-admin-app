@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Row, Col, Card, Form, Button, Pagination, Modal, DropdownButton, Dropdown } from 'react-bootstrap';
 import BTable from 'react-bootstrap/Table';
 
+import OrderCard from '../../../components/Widgets/Statistic/OrderCard';
 import { useTable, useSortBy, usePagination, useGlobalFilter } from 'react-table';
 import makeData from '../../../data/schoolData';
 
@@ -201,22 +202,49 @@ const UserManagement = () => {
 
   return (
     <React.Fragment>
-      <Row>
-      <Col xl={3} md={12}>
-          <Card>
-            <Card.Body>
-              <Row className="align-items-center m-l-0">
-                <Col sm="auto">
-                  <i className="fas fa-users f-36 text-c-purple" />
-                </Col>
-                <Col sm="auto">
-                  <h6 className="text-muted m-b-10">ユーザー数</h6>
-                  <h2 className="m-b-0">1,000</h2>
-                </Col>
-              </Row>
-            </Card.Body>
-          </Card>
+            <Row>
+      <Col md={6} xl={3}>
+          <OrderCard
+            params={{
+              title: '管理ユーザー数',
+              class: 'bg-c-blue',
+              icon: 'fa fa-duotone fa-users',
+              primaryText: '1,000',
+            }}
+          />
         </Col>
+        <Col md={6} xl={3}>
+          <OrderCard
+            params={{
+              title: '登録 証明書/推薦状数',
+              class: 'bg-c-green',
+              icon: 'fa fa-solid fa-address-card',
+              primaryText: '8',
+            }}
+          />
+        </Col>
+        <Col md={6} xl={3}>
+          <OrderCard
+            params={{
+              title: '〇〇〇〇',
+              class: 'bg-c-yellow',
+              icon: 'feather icon-repeat',
+              primaryText: '0000',
+            }}
+          />
+        </Col>
+        <Col md={6} xl={3}>
+          <OrderCard
+            params={{
+              title: '〇〇〇〇',
+              class: 'bg-c-red',
+              icon: 'feather icon-award',
+              primaryText: '0000',
+            }}
+          />
+        </Col>
+      </Row>
+      <Row>
         <Col sm={12}>
           <Card>
             <Card.Header>
