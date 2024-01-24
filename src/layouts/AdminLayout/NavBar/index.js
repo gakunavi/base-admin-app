@@ -1,7 +1,6 @@
 import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 
-import NavLeft from './NavLeft';
 import NavRight from './NavRight';
 
 import { ConfigContext } from '../../../contexts/ConfigContext';
@@ -41,7 +40,7 @@ const NavBar = () => {
         <Link to="#" className={toggleClass.join(' ')} id="mobile-collapse" onClick={navToggleHandler}>
           <span />
         </Link>
-        <Link to="#" className="b-brand">
+        <Link to="/user-management" className="b-brand">
           <img id="main-logo" src={logo} alt="" className="logo" />
         </Link>
         <Link to="#" className={moreClass.join(' ')} onClick={() => setMoreToggle(!moreToggle)}>
@@ -49,7 +48,6 @@ const NavBar = () => {
         </Link>
       </div>
       <div style={{ justifyContent: 'end' }} className={collapseClass.join(' ')}>
-        <NavLeft />
         <NavRight />
       </div>
     </React.Fragment>

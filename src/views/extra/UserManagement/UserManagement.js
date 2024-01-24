@@ -268,21 +268,20 @@ const UserManagement = () => {
                 <Form.Group as={Col} md="2" controlId="ageTo">
                   <Form.Label>年齢(最大)</Form.Label>
                   <Form.Control type="number" placeholder="◯歳" value={ageTo} onChange={(e) => setAgeTo(e.target.value)} />
-                </Form.Group>
+                  </Form.Group>
+
+                {/* メールアドレス */}
                   <Form.Group as={Col} md="5" controlId="email">
                     <Form.Label>Email</Form.Label>
-                      <Form.Control type="email" placeholder="Enter email" />
+                      <Form.Control type="email" placeholder="XXXX@XXX.com" />
                   </Form.Group>
                 </Row>
+
+                {/* 住所 */}
                 <Row>
-                <Form.Group as={Col} md="3" controlId="validationCustom03">
-                    <Form.Label>都道府県</Form.Label>
-                    <Form.Control type="text" placeholder="長崎県"  />
-                    <Form.Control.Feedback type="invalid">Please provide a valid city.</Form.Control.Feedback>
-                  </Form.Group>
-                  <Form.Group as={Col} md="6" controlId="validationCustom03">
+                  <Form.Group as={Col} md="6" controlId="address">
                     <Form.Label>住所</Form.Label>
-                    <Form.Control type="text" placeholder="長崎市"  />
+                    <Form.Control type="text" placeholder="都道府県 市区町村"  />
                     <Form.Control.Feedback type="invalid">Please provide a valid city.</Form.Control.Feedback>
                   </Form.Group>
 
@@ -295,6 +294,24 @@ const UserManagement = () => {
                     <option value="female">女性</option>
                   </Form.Control>
                 </Form.Group>
+
+                {/* 所有資格・スキル */}
+                <Form.Group as={Col} md="4" controlId="skill">
+                  <Form.Label>所有資格・スキル</Form.Label>
+                  <Form.Control type="text" placeholder="簿記 TOEIC" value={freeWord} onChange={(e) => setFreeWord(e.target.value)} />
+                  </Form.Group>
+
+                {/* 学歴 */}
+                <Form.Group as={Col} md="4" controlId="Academic">
+                  <Form.Label>学歴</Form.Label>
+                  <Form.Control type="text" placeholder="〇〇大学" value={freeWord} onChange={(e) => setFreeWord(e.target.value)} />
+                  </Form.Group>
+
+                {/* 職歴 */}
+                <Form.Group as={Col} md="4" controlId="Work">
+                  <Form.Label>職歴</Form.Label>
+                  <Form.Control type="text" placeholder="株式会社〇〇" value={freeWord} onChange={(e) => setFreeWord(e.target.value)} />
+                  </Form.Group>
 
                 {/* フリーワード */}
                 <Form.Group as={Col} md="12" controlId="freeWord">

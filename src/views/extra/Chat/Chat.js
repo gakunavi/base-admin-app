@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import PerfectScrollbar from 'react-perfect-scrollbar';
 import { Row, Col, Card, Modal, Table, Tabs, Tab, Carousel, ListGroup, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
@@ -22,6 +22,21 @@ const Chat = () => {
   const [isContactEdit, setIsContactEdit] = useState(false);
   const [isOtherEdit, setIsOtherEdit] = useState(false);
   const [isModalOpen, setModalOpen] = useState(false);
+  const [height, setHeight] = useState(window.innerHeight*0.85);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setHeight(window.innerHeight);
+    };
+
+    // ウィンドウのリサイズ時に高さを更新
+    window.addEventListener('resize', handleResize);
+
+    // コンポーネントがアンマウントされた時にイベントリスナーを解除
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
 
   const profileTabClass = 'nav-link text-reset';
   const profileTabActiveClass = 'nav-link text-reset active';
@@ -73,19 +88,6 @@ const Chat = () => {
                   <li className="nav-item">
                     <Link
                       to="#"
-                      className={activeProfileTab === 'group' ? profileTabActiveClass : profileTabClass}
-                      onClick={() => {
-                        setActiveProfileTab('group');
-                      }}
-                      id="group-tab"
-                    >
-                      <i className="feather icon-users mr-2 px-2" />
-                      グループ
-                    </Link>
-                  </li>
-                  <li className="nav-item">
-                    <Link
-                      to="#"
                       className={activeProfileTab === 'square' ? profileTabActiveClass : profileTabClass}
                       onClick={() => {
                         setActiveProfileTab('square');
@@ -103,11 +105,11 @@ const Chat = () => {
         {/* Cardの親divにposition: relativeを適用 */}
         <div style={{ position: 'relative' }}>
           <Card className="new-cust-card">
-            <div style={{ height: '615px' }}>
+            <div style={{ height: `${height}px` }}>
               <PerfectScrollbar>
                 <Card.Body className="p-b-0">
                   <div className="align-middle m-b-25">
-                    <img src={Avatar3} alt="user" className="img-radius align-top m-r-15" />
+                    <img src={Avatar3} alt="user" className="img-radius align-top m-r-15" style={{ width: '80px', height: '80px' }} />
                     <div className="d-inline-block">
                       <Link to="#">
                         <h6>Alex Thompson</h6>
@@ -117,7 +119,7 @@ const Chat = () => {
                     </div>
                   </div>
                   <div className="align-middle m-b-25">
-                    <img src={Avatar3} alt="user" className="img-radius align-top m-r-15" />
+                    <img src={Avatar3} alt="user" className="img-radius align-top m-r-15" style={{ width: '80px', height: '80px' }} />
                     <div className="d-inline-block">
                       <Link to="#">
                         <h6>John Doue</h6>
@@ -127,7 +129,7 @@ const Chat = () => {
                     </div>
                   </div>
                   <div className="align-middle m-b-25">
-                    <img src={Avatar3} alt="user" className="img-radius align-top m-r-15" />
+                    <img src={Avatar3} alt="user" className="img-radius align-top m-r-15" style={{ width: '80px', height: '80px' }} />
                     <div className="d-inline-block">
                       <Link to="#">
                         <h6>Alex Thompson</h6>
@@ -140,7 +142,7 @@ const Chat = () => {
                     </div>
                   </div>
                   <div className="align-middle m-b-25">
-                    <img src={Avatar3} alt="user" className="img-radius align-top m-r-15" />
+                    <img src={Avatar3} alt="user" className="img-radius align-top m-r-15" style={{ width: '80px', height: '80px' }} />
                     <div className="d-inline-block">
                       <Link to="#">
                         <h6>John Doue</h6>
@@ -153,7 +155,7 @@ const Chat = () => {
                     </div>
                   </div>
                   <div className="align-middle m-b-25">
-                    <img src={Avatar3} alt="user" className="img-radius align-top m-r-15" />
+                    <img src={Avatar3} alt="user" className="img-radius align-top m-r-15" style={{ width: '80px', height: '80px' }} />
                     <div className="d-inline-block">
                       <Link to="#">
                         <h6>Shirley Hoe</h6>
@@ -163,7 +165,7 @@ const Chat = () => {
                     </div>
                   </div>
                   <div className="align-middle m-b-25">
-                    <img src={Avatar3} alt="user" className="img-radius align-top m-r-15" />
+                    <img src={Avatar3} alt="user" className="img-radius align-top m-r-15" style={{ width: '80px', height: '80px' }} />
                     <div className="d-inline-block">
                       <Link to="#">
                         <h6>John Doue</h6>
@@ -173,7 +175,7 @@ const Chat = () => {
                     </div>
                   </div>
                   <div className="align-middle m-b-25">
-                    <img src={Avatar3} alt="user" className="img-radius align-top m-r-15" />
+                    <img src={Avatar3} alt="user" className="img-radius align-top m-r-15" style={{ width: '80px', height: '80px' }}/>
                     <div className="d-inline-block">
                       <Link to="#">
                         <h6>James Alexander</h6>
@@ -183,7 +185,7 @@ const Chat = () => {
                     </div>
                   </div>
                   <div className="align-middle m-b-25">
-                    <img src={Avatar3} alt="user" className="img-radius align-top m-r-15" />
+                    <img src={Avatar3} alt="user" className="img-radius align-top m-r-15" style={{ width: '80px', height: '80px' }} />
                     <div className="d-inline-block">
                       <Link to="#">
                         <h6>John Doue</h6>
@@ -200,9 +202,26 @@ const Chat = () => {
             </div>
               </Card>
                         {/* サークルボタンの位置を絶対的に調整 */}
-          <div className="circle-button" onClick={handleCircleButtonClick} style={{ position: 'absolute', right: '10px', bottom: '10px', backgroundColor:'#55A4FF', color:'#fff' }}>
-          <i class="fa fa-plus fa-2x" aria-hidden="true"></i>
-          </div>
+                <div
+      className="circle-button"
+      onClick={handleCircleButtonClick}
+      style={{
+        position: 'absolute',
+        right: '10px',
+        bottom: '10px',
+        width: '50px',
+        height: '50px',
+        backgroundColor: '#55A4FF',
+        color: '#fff',
+        borderRadius: '25px',
+        boxShadow: '3px 3px 5px 0px #333',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+      }}
+    >
+      <i className="fa fa-plus fa-2x" aria-hidden="true"></i>
+    </div>
         </div>
 
         {/* モーダルのコードは変更なし */}
@@ -575,11 +594,11 @@ const Chat = () => {
                       {/* Cardの親divにposition: relativeを適用 */}
         <div style={{ position: 'relative' }}>
           <Card className="new-cust-card">
-            <div style={{ height: '615px' }}>
+          <div style={{ height: `${height}px` }}>
               <PerfectScrollbar>
                 <Card.Body className="p-b-0">
                   <div className="align-middle m-b-25">
-                    <img src={Avatar3} alt="user" className="img-radius align-top m-r-15" />
+                    <img src={Avatar3} alt="user" className="img-radius align-top m-r-15" style={{ width: '80px', height: '80px' }}/>
                     <div className="d-inline-block">
                       <Link to="#">
                         <h6>Alex Thompson</h6>
@@ -589,7 +608,7 @@ const Chat = () => {
                     </div>
                   </div>
                   <div className="align-middle m-b-25">
-                    <img src={Avatar3} alt="user" className="img-radius align-top m-r-15" />
+                    <img src={Avatar3} alt="user" className="img-radius align-top m-r-15" style={{ width: '80px', height: '80px' }}/>
                     <div className="d-inline-block">
                       <Link to="#">
                         <h6>John Doue</h6>
@@ -599,7 +618,7 @@ const Chat = () => {
                     </div>
                   </div>
                   <div className="align-middle m-b-25">
-                    <img src={Avatar3} alt="user" className="img-radius align-top m-r-15" />
+                    <img src={Avatar3} alt="user" className="img-radius align-top m-r-15" style={{ width: '80px', height: '80px' }}/>
                     <div className="d-inline-block">
                       <Link to="#">
                         <h6>Alex Thompson</h6>
@@ -612,7 +631,7 @@ const Chat = () => {
                     </div>
                   </div>
                   <div className="align-middle m-b-25">
-                    <img src={Avatar3} alt="user" className="img-radius align-top m-r-15" />
+                    <img src={Avatar3} alt="user" className="img-radius align-top m-r-15" style={{ width: '80px', height: '80px' }} />
                     <div className="d-inline-block">
                       <Link to="#">
                         <h6>Shirley Hoe</h6>
@@ -622,7 +641,7 @@ const Chat = () => {
                     </div>
                   </div>
                   <div className="align-middle m-b-25">
-                    <img src={Avatar3} alt="user" className="img-radius align-top m-r-15" />
+                    <img src={Avatar3} alt="user" className="img-radius align-top m-r-15" style={{ width: '80px', height: '80px' }}/>
                     <div className="d-inline-block">
                       <Link to="#">
                         <h6>James Alexander</h6>
@@ -632,7 +651,7 @@ const Chat = () => {
                     </div>
                   </div>
                   <div className="align-middle m-b-25">
-                    <img src={Avatar3} alt="user" className="img-radius align-top m-r-15" />
+                    <img src={Avatar3} alt="user" className="img-radius align-top m-r-15" style={{ width: '80px', height: '80px' }}/>
                     <div className="d-inline-block">
                       <Link to="#">
                         <h6>John Doue</h6>
@@ -666,7 +685,7 @@ const Chat = () => {
                 <Card.Body className="p-b-0">
                 <div className="align-middle m-b-25 d-flex align-items-center justify-content-between">
                   <div className="d-flex align-items-center">
-                    <img src={Avatar3} alt="user" className="img-radius align-top m-r-15" />
+                    <img src={Avatar3} alt="user" className="img-radius align-top m-r-15" style={{ width: '80px', height: '80px' }} />
                     <div className="d-inline-block">
                       <Link to="#">
                         <h6>Alex Thompson</h6>
@@ -677,7 +696,7 @@ const Chat = () => {
                 </div>
                 <div className="align-middle m-b-25 d-flex align-items-center justify-content-between">
                   <div className="d-flex align-items-center">
-                    <img src={Avatar3} alt="user" className="img-radius align-top m-r-15" />
+                    <img src={Avatar3} alt="user" className="img-radius align-top m-r-15" style={{ width: '80px', height: '80px' }}/>
                     <div className="d-inline-block">
                       <Link to="#">
                         <h6>Alex Thompson</h6>
@@ -688,7 +707,7 @@ const Chat = () => {
                 </div>
                 <div className="align-middle m-b-25 d-flex align-items-center justify-content-between">
                   <div className="d-flex align-items-center">
-                    <img src={Avatar3} alt="user" className="img-radius align-top m-r-15" />
+                    <img src={Avatar3} alt="user" className="img-radius align-top m-r-15" style={{ width: '80px', height: '80px' }}/>
                     <div className="d-inline-block">
                       <Link to="#">
                         <h6>Alex Thompson</h6>
@@ -699,7 +718,7 @@ const Chat = () => {
                 </div>
                 <div className="align-middle m-b-25 d-flex align-items-center justify-content-between">
                   <div className="d-flex align-items-center">
-                    <img src={Avatar3} alt="user" className="img-radius align-top m-r-15" />
+                    <img src={Avatar3} alt="user" className="img-radius align-top m-r-15" style={{ width: '80px', height: '80px' }}/>
                     <div className="d-inline-block">
                       <Link to="#">
                         <h6>Alex Thompson</h6>
@@ -710,7 +729,7 @@ const Chat = () => {
                 </div>
                 <div className="align-middle m-b-25 d-flex align-items-center justify-content-between">
                   <div className="d-flex align-items-center">
-                    <img src={Avatar3} alt="user" className="img-radius align-top m-r-15" />
+                    <img src={Avatar3} alt="user" className="img-radius align-top m-r-15" style={{ width: '80px', height: '80px' }}/>
                     <div className="d-inline-block">
                       <Link to="#">
                         <h6>Alex Thompson</h6>
@@ -721,7 +740,7 @@ const Chat = () => {
                 </div>
                 <div className="align-middle m-b-25 d-flex align-items-center justify-content-between">
                   <div className="d-flex align-items-center">
-                    <img src={Avatar3} alt="user" className="img-radius align-top m-r-15" />
+                    <img src={Avatar3} alt="user" className="img-radius align-top m-r-15" style={{ width: '80px', height: '80px' }}/>
                     <div className="d-inline-block">
                       <Link to="#">
                         <h6>Alex Thompson</h6>
@@ -732,7 +751,7 @@ const Chat = () => {
                           </div>
                           <div className="align-middle m-b-25 d-flex align-items-center justify-content-between">
                   <div className="d-flex align-items-center">
-                    <img src={Avatar3} alt="user" className="img-radius align-top m-r-15" />
+                    <img src={Avatar3} alt="user" className="img-radius align-top m-r-15" style={{ width: '80px', height: '80px' }}/>
                     <div className="d-inline-block">
                       <Link to="#">
                         <h6>Alex Thompson</h6>
@@ -743,7 +762,7 @@ const Chat = () => {
                 </div>
                 <div className="align-middle m-b-25 d-flex align-items-center justify-content-between">
                   <div className="d-flex align-items-center">
-                    <img src={Avatar3} alt="user" className="img-radius align-top m-r-15" />
+                    <img src={Avatar3} alt="user" className="img-radius align-top m-r-15" style={{ width: '80px', height: '80px' }} />
                     <div className="d-inline-block">
                       <Link to="#">
                         <h6>Alex Thompson</h6>
@@ -754,7 +773,7 @@ const Chat = () => {
                 </div>
                 <div className="align-middle m-b-25 d-flex align-items-center justify-content-between">
                   <div className="d-flex align-items-center">
-                    <img src={Avatar3} alt="user" className="img-radius align-top m-r-15" />
+                    <img src={Avatar3} alt="user" className="img-radius align-top m-r-15" style={{ width: '80px', height: '80px' }}/>
                     <div className="d-inline-block">
                       <Link to="#">
                         <h6>Alex Thompson</h6>
@@ -765,7 +784,7 @@ const Chat = () => {
                 </div>
                 <div className="align-middle m-b-25 d-flex align-items-center justify-content-between">
                   <div className="d-flex align-items-center">
-                    <img src={Avatar3} alt="user" className="img-radius align-top m-r-15" />
+                    <img src={Avatar3} alt="user" className="img-radius align-top m-r-15" style={{ width: '80px', height: '80px' }}/>
                     <div className="d-inline-block">
                       <Link to="#">
                         <h6>Alex Thompson</h6>
@@ -776,7 +795,7 @@ const Chat = () => {
                 </div>
                 <div className="align-middle m-b-25 d-flex align-items-center justify-content-between">
                   <div className="d-flex align-items-center">
-                    <img src={Avatar3} alt="user" className="img-radius align-top m-r-15" />
+                    <img src={Avatar3} alt="user" className="img-radius align-top m-r-15" style={{ width: '80px', height: '80px' }}/>
                     <div className="d-inline-block">
                       <Link to="#">
                         <h6>Alex Thompson</h6>
@@ -787,7 +806,7 @@ const Chat = () => {
                           </div>
                           <div className="align-middle m-b-25 d-flex align-items-center justify-content-between">
                   <div className="d-flex align-items-center">
-                    <img src={Avatar3} alt="user" className="img-radius align-top m-r-15" />
+                    <img src={Avatar3} alt="user" className="img-radius align-top m-r-15" style={{ width: '80px', height: '80px' }}/>
                     <div className="d-inline-block">
                       <Link to="#">
                         <h6>Alex Thompson</h6>
@@ -798,7 +817,7 @@ const Chat = () => {
                 </div>
                 <div className="align-middle m-b-25 d-flex align-items-center justify-content-between">
                   <div className="d-flex align-items-center">
-                    <img src={Avatar3} alt="user" className="img-radius align-top m-r-15" />
+                    <img src={Avatar3} alt="user" className="img-radius align-top m-r-15" style={{ width: '80px', height: '80px' }}/>
                     <div className="d-inline-block">
                       <Link to="#">
                         <h6>Alex Thompson</h6>
@@ -809,7 +828,7 @@ const Chat = () => {
                 </div>
                 <div className="align-middle m-b-25 d-flex align-items-center justify-content-between">
                   <div className="d-flex align-items-center">
-                    <img src={Avatar3} alt="user" className="img-radius align-top m-r-15" />
+                    <img src={Avatar3} alt="user" className="img-radius align-top m-r-15" style={{ width: '80px', height: '80px' }}/>
                     <div className="d-inline-block">
                       <Link to="#">
                         <h6>Alex Thompson</h6>
@@ -820,7 +839,7 @@ const Chat = () => {
                 </div>
                 <div className="align-middle m-b-25 d-flex align-items-center justify-content-between">
                   <div className="d-flex align-items-center">
-                    <img src={Avatar3} alt="user" className="img-radius align-top m-r-15" />
+                    <img src={Avatar3} alt="user" className="img-radius align-top m-r-15" style={{ width: '80px', height: '80px' }}/>
                     <div className="d-inline-block">
                       <Link to="#">
                         <h6>Alex Thompson</h6>
@@ -831,7 +850,7 @@ const Chat = () => {
                 </div>
                 <div className="align-middle m-b-25 d-flex align-items-center justify-content-between">
                   <div className="d-flex align-items-center">
-                    <img src={Avatar3} alt="user" className="img-radius align-top m-r-15" />
+                    <img src={Avatar3} alt="user" className="img-radius align-top m-r-15" style={{ width: '80px', height: '80px' }}/>
                     <div className="d-inline-block">
                       <Link to="#">
                         <h6>Alex Thompson</h6>
@@ -862,12 +881,12 @@ const Chat = () => {
               <Card.Title as="h5">山田太郎</Card.Title>
             </Card.Header>
             <Card.Body className="p-0">
-              <div style={{ height: '550px' }}>
+              <div style={{ height: `${height-60}px` }}>
                 <PerfectScrollbar>
                   <div className="p-l-20 p-r-20">
                     <div className="row m-b-20 received-chat">
                       <div className="col-auto p-r-0">
-                        <img src={Avatar1} alt="user" className="img-radius" style={{ width: '30px' }} />
+                        <img src={Avatar1} alt="user" className="img-radius" style={{ width: '60px' }} />
                       </div>
                       <div className="col">
                         <div className="msg">
@@ -890,12 +909,12 @@ const Chat = () => {
                         </p>
                       </div>
                       <div className="col-auto p-l-0">
-                        <img src={Avatar2} alt="user" className="img-radius" style={{ width: '30px' }} />
+                        <img src={Avatar2} alt="user" className="img-radius" style={{ width: '60px' }} />
                       </div>
                     </div>
                     <div className="row m-b-20 received-chat">
                       <div className="col-auto p-r-0">
-                        <img src={Avatar1} alt="user" className="img-radius" style={{ width: '30px' }} />
+                        <img src={Avatar1} alt="user" className="img-radius" style={{ width: '60px' }} />
                       </div>
                       <div className="col">
                         <div className="msg">
@@ -920,12 +939,12 @@ const Chat = () => {
                         </p>
                       </div>
                       <div className="col-auto p-l-0">
-                        <img src={Avatar2} alt="user" className="img-radius" style={{ width: '30px' }} />
+                        <img src={Avatar2} alt="user" className="img-radius" style={{ width: '60px' }} />
                       </div>
                     </div>
                     <div className="row m-b-20 received-chat">
                       <div className="col-auto p-r-0">
-                        <img src={Avatar1} alt="user" className="img-radius" style={{ width: '30px' }} />
+                        <img src={Avatar1} alt="user" className="img-radius" style={{ width: '60px' }} />
                       </div>
                       <div className="col">
                         <div className="msg">

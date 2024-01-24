@@ -67,7 +67,7 @@ export const routes = [
     guard: AuthGuard,
     routes: [
       {
-        exact: 'true',
+        exact: true,
         path: '/dashboard',
         element: lazy(() => import('./views/extra/Dashboard'))
       },
@@ -93,7 +93,7 @@ export const routes = [
       },
       {
         exact: true,
-        path: '/sample-page',
+        path: '/plan',
         element: lazy(() => import('./views/extra/SamplePage'))
       },
       {

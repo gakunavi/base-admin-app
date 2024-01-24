@@ -7,14 +7,6 @@ const menuItems = {
       icon: 'icon-support',
       children: [
         {
-          id: 'dashboard-menu',
-          title: 'ダッシュボード',
-          type: 'item',
-          url: '/dashboard',
-          classes: 'nav-item',
-          icon: 'feather icon-home',
-        },
-        {
           id: 'user-management',
           title: 'ユーザー管理',
           type: 'item',
@@ -52,12 +44,12 @@ const menuItems = {
           icon: 'fa fa-comments'
         },
         {
-          id: 'sample-page',
-          title: 'Sample Page',
+          id: 'plan',
+          title: 'プラン情報',
           type: 'item',
-          url: '/sample-page',
+          url: '/plan',
           classes: 'nav-item',
-          icon: 'feather icon-sidebar'
+          icon: 'feather icon-award'
         }
       ]
     }
