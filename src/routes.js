@@ -94,7 +94,7 @@ export const routes = [
       {
         exact: true,
         path: '/plan',
-        element: lazy(() => import('./views/extra/SamplePage'))
+        element: lazy(() => import('./views/extra/Plan/Plan'))
       },
       {
         path: '*',

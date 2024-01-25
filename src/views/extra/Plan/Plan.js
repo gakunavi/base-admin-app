@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import { Row, Col, Card, Modal, Button } from 'react-bootstrap';
 
-import lite from '../../assets/images/plan/lite.svg';
-import basic from '../../assets/images/plan/basic.svg';
-import standard from '../../assets/images/plan/standard.svg';
-import premium from '../../assets/images/plan/premium.svg';
-import professional from '../../assets/images/plan/professional.svg';
+import lite from '../../../assets/images/plan/lite.svg';
+import basic from '../../../assets/images/plan/basic.svg';
+import standard from '../../../assets/images/plan/standard.svg';
+import premium from '../../../assets/images/plan/premium.svg';
+import professional from '../../../assets/images/plan/professional.svg';
 
-const Coupons = () => {
+const Plan = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -17,7 +17,7 @@ const Coupons = () => {
           <Card>
             <Card.Body className="text-center">
             <hr />
-              <img src={lite} alt="" className="img-fluid w-50" />
+              <img src={lite} alt="" className="img-fluid" />
               <hr />
 
               <div className="row align-items-center m-l-0">
@@ -42,7 +42,7 @@ const Coupons = () => {
           <Card>
             <Card.Body className="text-center">
             <hr />
-              <img src={basic} alt="" className="img-fluid w-50" />
+              <img src={basic} alt="" className="img-fluid" />
               <hr />
               <div className="row align-items-center m-l-0">
                 <div className="col-6 text-left">
@@ -66,7 +66,7 @@ const Coupons = () => {
           <Card>
             <Card.Body className="text-center">
             <hr />
-              <img src={standard} alt="" className="img-fluid w-50" />
+              <img src={standard} alt="" className="img-fluid" />
               <hr />
               <div className="row align-items-center m-l-0">
                 <div className="col-6 text-left">
@@ -90,7 +90,7 @@ const Coupons = () => {
           <Card>
             <Card.Body className="text-center">
             <hr />
-              <img src={premium} alt="" className="img-fluid w-50" />
+              <img src={premium} alt="" className="img-fluid" />
               <hr />
               <div className="row align-items-center m-l-0">
                 <div className="col-6 text-left">
@@ -114,7 +114,7 @@ const Coupons = () => {
           <Card>
             <Card.Body className="text-center">
             <hr />
-              <img src={professional} alt="" className="img-fluid w-50" />
+              <img src={professional} alt="" className="img-fluid" />
               <hr />
               <div className="row align-items-center m-l-0">
                 <div className="col-6 text-left">
@@ -140,4 +140,4 @@ const Coupons = () => {
   );
 };
 
-export default Coupons;
+export default Plan;

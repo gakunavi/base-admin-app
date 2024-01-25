@@ -7,7 +7,7 @@ const GuestGuard = ({ children }) => {
   const { isLoggedIn } = useAuth();
 
   if (isLoggedIn) {
-    return <Navigate to="/sample-page" />;
+    return <Navigate to="/user-management" />;
   }
 
   return <React.Fragment>{children}</React.Fragment>;
