@@ -14,7 +14,7 @@ const ColorOptions = () => {
     <React.Fragment>
       <div className="config-scroll">
         <PerfectScrollbar>
-          <h6>header background</h6>
+          <h6>テーマカラーの変更</h6>
           <div className="theme-color header-color">
             <Link
               to="#"

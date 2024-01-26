@@ -6,7 +6,6 @@ const TabConfig = () => {
   return (
     <React.Fragment>
       <ColorOptions />
-      <LayoutOptions />
     </React.Fragment>
   );
 };

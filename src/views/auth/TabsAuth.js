@@ -47,7 +47,7 @@ const TabsAuth = () => {
                     <button className="btn  btn-primary mb-4 mr-2">Signin</button>
                     <button className="btn  btn-outline-primary mb-4 toggle-btn">Create Profile</button>
                     <p className="mb-2 text-muted">
-                      Forgot password?{' '}
+                    パスワードをお忘れですか？{' '}
                       <NavLink to="/auth/reset-password-1" className="f-w-400">
                         Reset
                       </NavLink>

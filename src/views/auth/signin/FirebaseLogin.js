@@ -87,34 +87,20 @@ const FirebaseLogin = ({ className, ...rest }) => {
             <div className="custom-control custom-checkbox  text-left mb-4 mt-2">
               <input type="checkbox" className="custom-control-input" id="customCheck1" />
               <label className="custom-control-label" htmlFor="customCheck1">
-                Save credentials.
+                ログイン情報を保存する
               </label>
             </div>
 
             <Row>
               <Col mt={2}>
                 <Button className="btn-block" color="primary" disabled={isSubmitting} size="large" type="submit" variant="primary">
-                  Signin
+                  ログイン
                 </Button>
               </Col>
             </Row>
           </form>
         )}
       </Formik>
-
-      <Row>
-        <Col sm={12}>
-          <h5 className="my-3"> OR </h5>
-        </Col>
-      </Row>
-
-      <Row>
-        <Col sm={12}>
-          <Button onClick={googleHandler} variant="danger">
-            <i className="fa fa-lock" /> Sign in with Google
-          </Button>
-        </Col>
-      </Row>
 
       <hr />
     </React.Fragment>

@@ -55,6 +55,7 @@ const newPerson = () => {
 
   return {
     id: i++,
+    selected: false,
     name: name,
     avatar: GetAvatar(name),
     email: nameEmail + '@gmail.com',
@@ -97,11 +98,11 @@ const newPerson = () => {
       <React.Fragment>
         <Link to="#" className="btn btn-icon btn-rounded btn-info mx-1">
           <i className="feather icon-edit" />
-          &nbsp;Edit
+          &nbsp;編集
         </Link>
         <Link to="#" className="btn btn-icon btn-rounded btn-danger mx-1">
           <i className="feather icon-trash-2" />
-          &nbsp;Delete
+          &nbsp;削除
         </Link>
       </React.Fragment>
     )

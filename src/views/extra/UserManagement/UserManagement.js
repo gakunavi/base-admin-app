@@ -6,7 +6,7 @@ import OrderCard from '../../../components/Widgets/Statistic/OrderCard';
 import { useTable, useSortBy, usePagination, useGlobalFilter } from 'react-table';
 import makeData from '../../../data/schoolData';
 
-function Table({ columns, data, modalOpen }) {
+function Table({ columns, data, modalOpen, modalSquare }) {
   const {
     getTableProps,
     getTableBodyProps,
@@ -56,8 +56,11 @@ function Table({ columns, data, modalOpen }) {
             ))}
           </select>
         </Col>
-        <Col className="d-flex justify-content-end">
-          <Button variant="success" className="btn-sm btn-round has-ripple ml-2" onClick={modalOpen}>
+        <Col style={{ display: 'flex', justifyContent: 'flex-end' }}>
+          <Button variant="warning" className="btn-sm btn-round has-ripple ml-2" onClick={modalSquare}>
+            <i className="feather icon-share-2" /> スクエアを作成
+          </Button>
+          <Button variant="success" style={{ marginLeft: '10px' }}　className="btn-sm btn-round has-ripple ml-2" onClick={modalOpen}>
             <i className="feather icon-plus" /> ユーザーを追加
           </Button>
         </Col>
@@ -153,14 +156,27 @@ const UserManagement = () => {
     setValidated(true);
   };
 
+  const [selectAll, setSelectAll] = useState(false);
+
   const columns = React.useMemo(
     () => [
+      {
+        Header: '',
+        accessor: 'selected', // 'selected' プロパティを参照
+        Cell: ({ row }) => (
+          <input type="checkbox" checked={row.original.selected} onChange={() => handleCheckboxChange(row.original)} style={{ width: '20px', height: '20px', display: 'flex', justifyContent: 'center', alignItems: 'center' }} />
+        )
+      },
       {
         Header: '#',
         accessor: 'avatar'
       },
       {
-        Header: '指名',
+        Header: '管理名',
+        accessor: 'managementname'
+      },
+      {
+        Header: '氏名',
         accessor: 'name'
       },
       {
@@ -188,17 +204,34 @@ const UserManagement = () => {
         accessor: 'action'
       }
     ],
-    []
+    [selectAll]
   );
 
   const data = React.useMemo(() => makeData(100), []);
 
   const [isOpen, setIsOpen] = useState(false);
-
   const openHandler = () => {
     setIsOpen(true);
   };
 
+  const [isOpenSquareCreate, setIsOpenSquareCreate] = useState(false);
+  const openSquareCreateHandler = () => {
+    setIsOpenSquareCreate(true);
+  };
+
+  // チェックボックスの状態が変更された時のハンドラ
+  const handleCheckboxChange = (row) => {
+    row.selected = !row.selected;
+  };
+
+  // 一斉にチェックをつけたり外したりするハンドラ
+  const handleSelectAll = () => {
+    setSelectAll(!selectAll);
+    // データの各行に対して一斉にチェックボックスの状態をセット
+    data.forEach((row) => {
+      row.selected = !selectAll;
+    });
+  };
 
   return (
     <React.Fragment>
@@ -209,7 +242,7 @@ const UserManagement = () => {
               title: '管理ユーザー数',
               class: 'bg-c-blue',
               icon: 'fa fa-duotone fa-users',
-              primaryText: '1,000',
+              primaryText: '730名 / 1,000名',
             }}
           />
         </Col>
@@ -219,7 +252,7 @@ const UserManagement = () => {
               title: '登録 証明書/推薦状数',
               class: 'bg-c-green',
               icon: 'fa fa-solid fa-address-card',
-              primaryText: '8',
+              primaryText: '8枚 / 10枚',
             }}
           />
         </Col>
@@ -236,10 +269,10 @@ const UserManagement = () => {
         <Col md={6} xl={3}>
           <OrderCard
             params={{
-              title: '〇〇〇〇',
+              title: '現在のプラン',
               class: 'bg-c-red',
               icon: 'feather icon-award',
-              primaryText: '0000',
+              primaryText: 'プレミアム',
             }}
           />
         </Col>
@@ -332,7 +365,11 @@ const UserManagement = () => {
               <Card.Title as="h5">ユーザー一覧</Card.Title>
             </Card.Header>
             <Card.Body>
-              <Table columns={columns} data={data} modalOpen={openHandler} />
+              {/* チェックボックス一斉選択のボタン */}
+              <Button variant="secondary" className="mb-3" onClick={handleSelectAll}>
+                全て選択
+              </Button>
+            <Table columns={columns} data={data} modalOpen={openHandler} modalSquare={openSquareCreateHandler} selectAll={selectAll} handleSelectAll={handleSelectAll} />
             </Card.Body>
           </Card>
           <Modal show={isOpen} onHide={() => setIsOpen(false)}>
@@ -341,15 +378,15 @@ const UserManagement = () => {
             </Modal.Header>
             <Modal.Body>
               <Row>
-                <Col sm={6}>
+                <Col sm={12}>
                   <div className="form-group fill pb-2">
                     <label className="floating-label" htmlFor="Name">
-                      Name
+                      管理名
                     </label>
                     <input type="text" className="form-control" id="Name" placeholder="Name" />
                   </div>
                 </Col>
-                <Col sm={6}>
+                <Col sm={12}>
                   <div className="form-group fill pb-2">
                     <label className="floating-label" htmlFor="Email">
                       Email
@@ -357,91 +394,38 @@ const UserManagement = () => {
                     <input type="email" className="form-control" id="Email" placeholder="Email" />
                   </div>
                 </Col>
-                <Col sm={6}>
-                  <div className="form-group fill pb-2">
-                    <label className="floating-label" htmlFor="Password">
-                      Password
-                    </label>
-                    <input type="password" className="form-control" id="Password" placeholder="Password" />
-                  </div>
-                </Col>
-                <Col sm={6}>
-                  <div className="form-group fill pb-2">
-                    <label className="floating-label" htmlFor="Phone">
-                      Phone
-                    </label>
-                    <input type="number" className="form-control" id="Phone" placeholder="Phone" />
-                  </div>
-                </Col>
-                <div className="col-sm-12">
-                  <div className="form-group fill pb-2">
-                    <label className="floating-label" htmlFor="Address">
-                      Address
-                    </label>
-                    <textarea className="form-control" id="Address" rows="3" placeholder="Address" />
-                  </div>
-                </div>
-                <Col sm={6}>
-                  <div className="form-group fill pb-2">
-                    <label className="floating-label" htmlFor="Sex">
-                      Select Sex
-                    </label>
-                    <select className="form-control" id="Sex">
-                      <option value="" />
-                      <option value="male">Male</option>
-                      <option value="female">Female</option>
-                    </select>
-                  </div>
-                </Col>
-                <Col sm={6}>
-                  <div className="form-group fill pb-2">
-                    <label className="floating-label" htmlFor="Icon">
-                      Profie Image
-                    </label>
-                    <input type="file" className="form-control" id="Icon" placeholder="Profie Image" />
-                  </div>
-                </Col>
-                <Col sm={6}>
-                  <div className="form-group fill pb-2">
-                    <label className="floating-label" htmlFor="Birth">
-                      Birth Date
-                    </label>
-                    <input type="date" className="form-control" id="Birth" placeholder="Birth Date" />
-                  </div>
-                </Col>
-                <Col sm={6}>
-                  <div className="form-group fill pb-2">
-                    <label className="floating-label" htmlFor="Age">
-                      Age
-                    </label>
-                    <input type="text" className="form-control" id="Age" placeholder="Age" />
-                  </div>
-                </Col>
+              </Row>
+            </Modal.Body>
+            <Modal.Footer>
+              <Button variant="danger" onClick={() => setIsOpen(false)}>
+                キャンセル
+              </Button>
+              <Button variant="primary">追加</Button>
+            </Modal.Footer>
+          </Modal>
+
+          {/* スクエアモーダル */}
+          <Modal show={isOpenSquareCreate} onHide={() => setIsOpenSquareCreate(false)}>
+            <Modal.Header closeButton>
+              <Modal.Title as="h5">スクエアを作成する</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+              <Row>
                 <Col sm={12}>
                   <div className="form-group fill pb-2">
-                    <label className="floating-label" htmlFor="Blood">
-                      Select Blood Group
+                    <label className="floating-label" htmlFor="Name">
+                      スクエア名
                     </label>
-                    <select className="form-control" id="Blood">
-                      <option value="" />
-                      <option value="A+">A+</option>
-                      <option value="A-">A-</option>
-                      <option value="B+">B+</option>
-                      <option value="B-">B-</option>
-                      <option value="AB+">AB+</option>
-                      <option value="AB-">AB-</option>
-                      <option value="O+">O+</option>
-                      <option value="O-">O-</option>
-                    </select>
+                    <input type="text" className="form-control" id="Name" placeholder="Square Name" />
                   </div>
                 </Col>
               </Row>
             </Modal.Body>
             <Modal.Footer>
-              <Button variant="danger" onClick={() => setIsOpen(false)}>
-                Clear
+              <Button variant="danger" onClick={() => setIsOpenSquareCreate(false)}>
+                キャンセル
               </Button>
-              <Button variant="primary">Submit</Button>
+              <Button variant="primary">作成</Button>
             </Modal.Footer>
           </Modal>
         </Col>

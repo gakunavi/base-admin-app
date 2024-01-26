@@ -96,6 +96,7 @@ const newPerson = () => {
 
   return {
     id: namor.generate({ words: 0, saltLength: 2, saltType: 'number' }),
+    managementname: "山田太郎",
     name: name,
     department: department,
     avatar: GetAvatar(name),
@@ -127,11 +128,11 @@ const newPerson = () => {
       <React.Fragment>
         <Link to="#" className="btn btn-icon btn-rounded btn-info mx-1">
           <i className="feather icon-edit" />
-          &nbsp;Edit
+          &nbsp;編集
         </Link>
         <Link to="#" className="btn btn-icon btn-rounded btn-danger">
           <i className="feather icon-trash-2" />
-          &nbsp;Delete
+          &nbsp;削除
         </Link>
       </React.Fragment>
     )

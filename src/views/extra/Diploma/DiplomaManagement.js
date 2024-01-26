@@ -34,7 +34,13 @@ function Table({ columns, data }) {
     useGlobalFilter,
     useSortBy,
     usePagination
-  );
+    );
+
+    const [isOpen, setIsOpen] = useState(false);
+
+  const openHandler = () => {
+    setIsOpen(true);
+  };
 
   return (
     <>
@@ -180,6 +186,115 @@ const DiplomaManagement = () => {
               <Table columns={columns} data={data} />
             </Card.Body>
           </Card>
+          <Modal show={isOpen} onHide={() => setIsOpen(false)}>
+            <Modal.Header closeButton>
+              <Modal.Title as="h5">ユーザー追加</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+              <Row>
+                <Col sm={6}>
+                  <div className="form-group fill pb-2">
+                    <label className="floating-label" htmlFor="Name">
+                      Name
+                    </label>
+                    <input type="text" className="form-control" id="Name" placeholder="Name" />
+                  </div>
+                </Col>
+                <Col sm={6}>
+                  <div className="form-group fill pb-2">
+                    <label className="floating-label" htmlFor="Email">
+                      Email
+                    </label>
+                    <input type="email" className="form-control" id="Email" placeholder="Email" />
+                  </div>
+                </Col>
+                <Col sm={6}>
+                  <div className="form-group fill pb-2">
+                    <label className="floating-label" htmlFor="Password">
+                      Password
+                    </label>
+                    <input type="password" className="form-control" id="Password" placeholder="Password" />
+                  </div>
+                </Col>
+                <Col sm={6}>
+                  <div className="form-group fill pb-2">
+                    <label className="floating-label" htmlFor="Phone">
+                      Phone
+                    </label>
+                    <input type="number" className="form-control" id="Phone" placeholder="Phone" />
+                  </div>
+                </Col>
+                <div className="col-sm-12">
+                  <div className="form-group fill pb-2">
+                    <label className="floating-label" htmlFor="Address">
+                      Address
+                    </label>
+                    <textarea className="form-control" id="Address" rows="3" placeholder="Address" />
+                  </div>
+                </div>
+                <Col sm={6}>
+                  <div className="form-group fill pb-2">
+                    <label className="floating-label" htmlFor="Sex">
+                      Select Sex
+                    </label>
+                    <select className="form-control" id="Sex">
+                      <option value="" />
+                      <option value="male">Male</option>
+                      <option value="female">Female</option>
+                    </select>
+                  </div>
+                </Col>
+                <Col sm={6}>
+                  <div className="form-group fill pb-2">
+                    <label className="floating-label" htmlFor="Icon">
+                      Profie Image
+                    </label>
+                    <input type="file" className="form-control" id="Icon" placeholder="Profie Image" />
+                  </div>
+                </Col>
+                <Col sm={6}>
+                  <div className="form-group fill pb-2">
+                    <label className="floating-label" htmlFor="Birth">
+                      Birth Date
+                    </label>
+                    <input type="date" className="form-control" id="Birth" placeholder="Birth Date" />
+                  </div>
+                </Col>
+                <Col sm={6}>
+                  <div className="form-group fill pb-2">
+                    <label className="floating-label" htmlFor="Age">
+                      Age
+                    </label>
+                    <input type="text" className="form-control" id="Age" placeholder="Age" />
+                  </div>
+                </Col>
+                <Col sm={12}>
+                  <div className="form-group fill pb-2">
+                    <label className="floating-label" htmlFor="Blood">
+                      Select Blood Group
+                    </label>
+                    <select className="form-control" id="Blood">
+                      <option value="" />
+                      <option value="A+">A+</option>
+                      <option value="A-">A-</option>
+                      <option value="B+">B+</option>
+                      <option value="B-">B-</option>
+                      <option value="AB+">AB+</option>
+                      <option value="AB-">AB-</option>
+                      <option value="O+">O+</option>
+                      <option value="O-">O-</option>
+                    </select>
+                  </div>
+                </Col>
+              </Row>
+            </Modal.Body>
+            <Modal.Footer>
+              <Button variant="danger" onClick={() => setIsOpen(false)}>
+                Clear
+              </Button>
+              <Button variant="primary">Submit</Button>
+            </Modal.Footer>
+          </Modal>
         </Col>
       </Row>
     </React.Fragment>

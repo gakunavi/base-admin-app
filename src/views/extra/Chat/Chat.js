@@ -9,6 +9,8 @@ import Avatar3 from '../../../assets/images/user/avatar-3.jpg';
 import Avatar4 from '../../../assets/images/user/avatar-4.jpg';
 import Avatar5 from '../../../assets/images/user/avatar-5.jpg';
 
+import Square from '../../../assets/images/user/square.png';
+
 import imgSlide1 from '../../../assets/images/slider/img-slide-1.jpg';
 import imgSlide2 from '../../../assets/images/slider/img-slide-2.jpg';
 import imgSlide4 from '../../../assets/images/slider/img-slide-4.jpg';
@@ -589,6 +591,7 @@ const Chat = () => {
           </div>
           )}
 
+        {/* スクエア */}
         {activeProfileTab === 'square' && (
             <div className={ activeProfileTab === 'square' ? profilePanActiveClass : profilePanClass } id="square">
                       {/* Cardの親divにposition: relativeを適用 */}
@@ -598,10 +601,10 @@ const Chat = () => {
               <PerfectScrollbar>
                 <Card.Body className="p-b-0">
                   <div className="align-middle m-b-25">
-                    <img src={Avatar3} alt="user" className="img-radius align-top m-r-15" style={{ width: '80px', height: '80px' }}/>
+                    <img src={Square} alt="user" className="img-radius align-top m-r-15" style={{ width: '80px', height: '80px' }}/>
                     <div className="d-inline-block">
                       <Link to="#">
-                        <h6>Alex Thompson</h6>
+                        <h6> 全体スクエア</h6>
                       </Link>
                       <p className="m-b-0">Cheers!</p>
                       <span className="status active" />

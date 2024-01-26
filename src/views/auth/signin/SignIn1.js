@@ -22,19 +22,14 @@ const Signin1 = () => {
               <img src={logoDark} alt="" className="img-fluid mb-4" />
               <FirebaseLogin />
               <p className="mb-2 text-muted">
-                Forgot password?{' '}
+                パスワードをお忘れですか？{ ' ' }
+                <br />
                 <NavLink to="/auth/reset-password-1" className="f-w-400">
-                  Reset
-                </NavLink>
-              </p>
-              <p className="mb-0 text-muted">
-                Don’t have an account?{' '}
-                <NavLink to="/auth/signup-1" className="f-w-400">
-                  Signup
+                  パスワードを変更する
                 </NavLink>
               </p>
               <Alert variant="primary" className="text-left mt-3">
-                Username:
+                ユーザーネームdemo:
                 <CopyToClipboard text="demo@gmail.com">
                   <Button variant="outline-primary mx-2 mb-2" as={Link} to="#" className="badge">
                     {' '}
@@ -42,7 +37,7 @@ const Signin1 = () => {
                   </Button>
                 </CopyToClipboard>
                 <br />
-                Password:
+                パスワードdemo:
                 <CopyToClipboard text="123456">
                   <Button variant="outline-primary mx-2" as={Link} to="#" className="badge">
                     {' '}

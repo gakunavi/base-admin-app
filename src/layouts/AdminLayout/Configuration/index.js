@@ -21,7 +21,7 @@ const Configuration = () => {
           </Link>
         </div>
         <div className="style-block">
-          <h5 className="mb-2">Live Menu Customizer</h5>
+          <h5 className="mb-2">テーマの変更</h5>
           <hr />
           <div className="m-style-scroller">
             <Layout />

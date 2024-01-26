@@ -1,5 +1,5 @@
 export const BASENAME = '/demos/admin-templates/gradient-able/react/default'; // don't add '/' at end off BASENAME for breadcrumbs
-export const BASE_URL = '/sample-page';
+export const BASE_URL = '/user-management';
 export const BASE_TITLE = ' | Gradient Able Premium React + Redux Admin Template';
 
 export const CONFIG = {
